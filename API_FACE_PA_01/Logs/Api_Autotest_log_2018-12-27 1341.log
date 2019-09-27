@@ -1,0 +1,8 @@
+ Thu, 27 Dec 2018 13:41:26  INFO test_api.py test_api [ line:33 ] ==========开始执行一个接口测试用例，请求数据如下==========
+ Thu, 27 Dec 2018 13:41:26  INFO test_api.py test_api [ line:34 ] 接口的请求地址：/login
+ Thu, 27 Dec 2018 13:41:26  INFO test_api.py test_api [ line:35 ] 接口请求类型：post
+ Thu, 27 Dec 2018 13:41:26  INFO test_api.py test_api [ line:36 ] 接口请求类型：{"loginName":"admin","pwd":"e10adc3949ba59abbe56e057f20f883e"}
+ Thu, 27 Dec 2018 13:41:26  INFO test_api.py test_api [ line:41 ] 本次接口请求的状态码为：200
+ Thu, 27 Dec 2018 13:41:26  INFO test_api.py test_api [ line:42 ] 接口请求的返回数据为：
+ Thu, 27 Dec 2018 13:41:26  INFO test_api.py test_api [ line:43 ] {"code":0,"msg":"操作成功","data":{"userId":1,"username":"admin","password":"e10adc3949ba59abbe56e057f20f883e","realName":"系统管理员","tel":"134","email":null,"remark":null,"deptId":"null","groupId":"1542251455310","roleId":"1542104202561","isvalid":"1","isDeptAdmin":"1","themes":null,"createUserId":null,"createUserName":null,"cameraPri":"59d1815bd3ec4010be77a971065f44de","humanDb":"","createTime":1543973016000}}
+ Thu, 27 Dec 2018 13:41:26  INFO test_api.py test_api [ line:47 ] ==========结束一个接口测试用例==========

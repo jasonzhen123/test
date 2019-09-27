@@ -1,0 +1,1784 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>FACE自动化接口测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.9.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+    body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+    table       { font-size: 100%; }
+    pre         { white-space: pre-wrap;word-wrap: break-word; }
+
+    /* -- heading ---------------------------------------------------------------------- */
+    h1 {
+        font-size: 16pt;
+        color: gray;
+    }
+    .heading {
+        margin-top: 0ex;
+        margin-bottom: 1ex;
+    }
+
+    .heading .attribute {
+        margin-top: 1ex;
+        margin-bottom: 0;
+    }
+
+    .heading .description {
+        margin-top: 2ex;
+        margin-bottom: 3ex;
+    }
+
+    /* -- css div popup ------------------------------------------------------------------------ */
+    a.popup_link {
+    }
+
+    a.popup_link:hover {
+        color: red;
+    }
+
+    .popup_window {
+        display: none;
+        position: relative;
+        left: 0px;
+        top: 0px;
+        /*border: solid #627173 1px; */
+        padding: 10px;
+        /* */
+        font-family: "Lucida Console", "Courier New", Courier, monospace;
+        text-align: left;
+        font-size: 8pt;
+        /* width: 500px;*/
+    }
+
+    }
+    /* -- report ------------------------------------------------------------------------ */
+    #show_detail_line {
+        margin-top: 3ex;
+        margin-bottom: 1ex;
+    }
+    #result_table {
+        width: 99%;
+    }
+    #header_row {
+        font-weight: bold;
+        color: #303641;
+
+    }
+    #total_row  { font-weight: bold; }
+    .passClass  {  }
+    .failClass  { background-color: #ffefa4; }
+    .errorClass {  }
+    .passCase   { color: #6c6; }
+    .failCase   { color: #FF6600; font-weight: bold; }
+    .errorCase  { color: #c00; font-weight: bold; }
+    .hiddenRow  { display: none; }
+    .testcase   { margin-left: 2em; }
+
+
+    /* -- ending ---------------------------------------------------------------------- */
+    #ending {
+    }
+
+    #div_base {
+                position:absolute;
+                top:0%;
+                left:5%;
+                right:5%;
+                width: auto;
+                height: auto;
+                margin: -15px 0 0 0;
+    }
+</style>
+
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <script type="text/javascript" src="https://cdn.bootcss.com/echarts/3.8.5/echarts.common.js"></script>-->
+    <script src="https://cdn.bootcss.com/echarts/3.8.5/echarts.common.min.js"></script>
+</head>
+<body>
+
+    <script language="javascript" type="text/javascript"><!--
+    output_list = Array();
+
+    /* level - 0:Summary; 1:Failed; 2:All */
+    function showCase(level) {
+        trs = document.getElementsByTagName("tr");
+        for (var i = 0; i < trs.length; i++) {
+            tr = trs[i];
+            id = tr.id;
+            if (id.substr(0,2) == 'ft') {
+                if (level < 1) {
+                    tr.className = 'hiddenRow';
+                }
+                else {
+                    tr.className = '';
+                }
+            }
+            if (id.substr(0,2) == 'pt') {
+                if (level > 1) {
+                    tr.className = '';
+                }
+                else {
+                    tr.className = 'hiddenRow';
+                }
+            }
+        }
+    }
+
+
+    function showClassDetail(cid, count) {
+        var id_list = Array(count);
+        var toHide = 1;
+        for (var i = 0; i < count; i++) {
+            tid0 = 't' + cid.substr(1) + '.' + (i+1);
+            tid = 'f' + tid0;
+            tr = document.getElementById(tid);
+            if (!tr) {
+                tid = 'p' + tid0;
+                tr = document.getElementById(tid);
+            }
+            id_list[i] = tid;
+            if (tr.className) {
+                toHide = 0;
+            }
+        }
+        for (var i = 0; i < count; i++) {
+            tid = id_list[i];
+            if (toHide) {
+                document.getElementById('div_'+tid).style.display = 'none'
+                document.getElementById(tid).className = 'hiddenRow';
+            }
+            else {
+                document.getElementById(tid).className = '';
+            }
+        }
+    }
+
+
+    function showTestDetail(div_id){
+        var details_div = document.getElementById(div_id)
+        var displayState = details_div.style.display
+        // alert(displayState)
+        if (displayState != 'block' ) {
+            displayState = 'block'
+            details_div.style.display = 'block'
+        }
+        else {
+            details_div.style.display = 'none'
+        }
+    }
+
+
+    function html_escape(s) {
+        s = s.replace(/&/g,'&amp;');
+        s = s.replace(/</g,'&lt;');
+        s = s.replace(/>/g,'&gt;');
+        return s;
+    }
+    /* obsoleted by detail in <div>
+    function showOutput(id, name) {
+        var w = window.open("", //url
+                        name,
+                        "resizable,scrollbars,status,width=800,height=450");
+        d = w.document;
+        d.write("<pre>");
+        d.write(html_escape(output_list[id]));
+        d.write("\n");
+        d.write("<a href='javascript:window.close()'>close</a>\n");
+        d.write("</pre>\n");
+        d.close();
+    }
+    */
+    --></script>
+
+    <div id="div_base">
+        
+    <div class='page-header'>
+        <h1>FACE自动化接口测试报告</h1>
+    <p class='attribute'><strong>开始时间:</strong> 2019-06-18 15:17:20</p>
+<p class='attribute'><strong>运行时长:</strong> 0:03:42.776298</p>
+<p class='attribute'><strong>状态:</strong> 失败 1 错误 33</p>
+
+    </div>
+    <!--<div style="float: left;width:50%;"><p class='description'>用例执行情况：</p></div>-->
+    <div id="chartline" style="width:50%;height:400px;float:left;"></div>
+    <div id="chart"style="width:50%;height:400px;float:right;"></div>
+
+        
+    <div class="btn-group btn-group-sm">
+         <!-- <button class="btn btn-default" onclick='javascript:showCase(0)'>总结</button> -->
+        <!--<button class="btn btn-default" onclick='javascript:showCase(1)'>失败</button>-->
+        <!--<button class="btn btn-default" onclick='javascript:showCase(2)'>全部</button>-->
+        <a class="btn btn-primary" onclick='javascript:showCase(0)'>概要 0.00% </a>
+        <a class="btn btn-warning" onclick='javascript:showCase(4)'>错误 33 </a>
+        <a class="btn btn-danger" onclick='javascript:showCase(1)'>失败  1 </a>
+        <a class="btn btn-success" onclick='javascript:showCase(2)'>成功 0 </a>
+        <a class="btn btn-info" onclick='javascript:showCase(3)'>所有 34 </a>  
+
+    </div>
+    <p></p>
+    <table id='result_table' class="table table-bordered">
+        <colgroup>
+            <col align='left' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+        </colgroup>
+        <tr id='header_row'>
+            <td>测试套件/测试用例</td>
+            <td>总数</td>
+            <td>成功</td>
+            <td>失败</td>
+            <td>错误</td>
+            <td>查看</td>
+            <th>错误截图</th>
+        </tr>
+        
+    <tr class='errorClass'>
+        <td>unittest.loader._FailedTest</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td><a href="javascript:showClassDetail('c1',1)">详情</a></td>
+        <td>&nbsp;</td>
+    </tr>
+
+<tr id='ft1.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_api</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.1')" >
+        错误</a>
+
+    <div id='div_ft1.1' class="popup_window">
+        <pre>
+        ft1.1: ImportError: Failed to import test module: test_api
+Traceback (most recent call last):
+  File "D:\python3.6\lib\unittest\loader.py", line 428, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\python3.6\lib\unittest\loader.py", line 369, in _get_module_from_name
+    __import__(name)
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_api.py", line 17, in &lt;module&gt;
+    de = DoExcel(excelFile)
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA_01\Common\DoExcel.py", line 8, in __init__
+    self.wb = load_workbook(excelpath)
+  File "D:\python3.6\lib\site-packages\openpyxl\reader\excel.py", line 174, in load_workbook
+    archive = _validate_archive(filename)
+  File "D:\python3.6\lib\site-packages\openpyxl\reader\excel.py", line 121, in _validate_archive
+    archive = ZipFile(filename, 'r', ZIP_DEFLATED)
+  File "D:\python3.6\lib\zipfile.py", line 1082, in __init__
+    self.fp = io.open(file, filemode)
+FileNotFoundError: [Errno 2] No such file or directory: 'G:\\01WorkSpace(Pycharm)\\API_FACE_PA_01\\TestDatas/api_info_1.xlsx'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='errorClass'>
+        <td>unittest.suite._ErrorHolder</td>
+        <td>8</td>
+        <td>0</td>
+        <td>0</td>
+        <td>8</td>
+        <td><a href="javascript:showClassDetail('c2',8)">详情</a></td>
+        <td>&nbsp;</td>
+    </tr>
+
+<tr id='ft2.1' class='none'>
+    <td class='errorCase'><div class='testcase'>TestRole)</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.1')" >
+        错误</a>
+
+    <div id='div_ft2.1' class="popup_window">
+        <pre>
+        ft2.1: Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_area.py", line 28, in setUpClass
+    dataArea = MyFunction.create_area(name)
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA_01\Common\MyFunction.py", line 242, in create_area
+    parentId = dict["data"]["records"][0]["id"]
+TypeError: 'NoneType' object is not subscriptable
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.2' class='none'>
+    <td class='errorCase'><div class='testcase'>TestDepartment)</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.2')" >
+        错误</a>
+
+    <div id='div_ft2.2' class="popup_window">
+        <pre>
+        ft2.2: Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_department.py", line 27, in setUpClass
+    orgData = MyFunction.create_organization(num)
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA_01\Common\MyFunction.py", line 139, in create_organization
+    orgId = dict["data"]["records"][0]["id"]
+TypeError: 'NoneType' object is not subscriptable
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.3' class='none'>
+    <td class='errorCase'><div class='testcase'>TestFace)</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.3')" >
+        错误</a>
+
+    <div id='div_ft2.3' class="popup_window">
+        <pre>
+        ft2.3: Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_face.py", line 39, in setUpClass
+    regData_01 = MyFunction.create_faceGroup(num_1)
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA_01\Common\MyFunction.py", line 46, in create_faceGroup
+    regId = dict["content"]["getRegistLib"]["records"][0]["id"]
+KeyError: 'content'
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.4' class='none'>
+    <td class='errorCase'><div class='testcase'>TestGroup)</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.4')" >
+        错误</a>
+
+    <div id='div_ft2.4' class="popup_window">
+        <pre>
+        ft2.4: Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_group.py", line 28, in setUpClass
+    roleData = MyFunction.create_role(name)
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA_01\Common\MyFunction.py", line 77, in create_role
+    priData = create_privilege(num_pri)
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA_01\Common\MyFunction.py", line 66, in create_privilege
+    priId = dict["data"]["records"][0]["id"]
+TypeError: 'NoneType' object is not subscriptable
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.5' class='none'>
+    <td class='errorCase'><div class='testcase'>TestGroup)</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.5')" >
+        错误</a>
+
+    <div id='div_ft2.5' class="popup_window">
+        <pre>
+        ft2.5: Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_log.py", line 25, in setUpClass
+    priData = MyFunction.create_privilege(name)
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA_01\Common\MyFunction.py", line 66, in create_privilege
+    priId = dict["data"]["records"][0]["id"]
+TypeError: 'NoneType' object is not subscriptable
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.6' class='none'>
+    <td class='errorCase'><div class='testcase'>TestRole)</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.6')" >
+        错误</a>
+
+    <div id='div_ft2.6' class="popup_window">
+        <pre>
+        ft2.6: Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_role.py", line 27, in setUpClass
+    priData = MyFunction.create_privilege(name)
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA_01\Common\MyFunction.py", line 66, in create_privilege
+    priId = dict["data"]["records"][0]["id"]
+TypeError: 'NoneType' object is not subscriptable
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.7' class='none'>
+    <td class='errorCase'><div class='testcase'>TestSurveillance)</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.7')" >
+        错误</a>
+
+    <div id='div_ft2.7' class="popup_window">
+        <pre>
+        ft2.7: Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_surveillance.py", line 39, in setUpClass
+    regData = MyFunction.create_faceGroup(reg_num)
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA_01\Common\MyFunction.py", line 46, in create_faceGroup
+    regId = dict["content"]["getRegistLib"]["records"][0]["id"]
+KeyError: 'content'
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.8' class='none'>
+    <td class='errorCase'><div class='testcase'>TestUser)</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.8')" >
+        错误</a>
+
+    <div id='div_ft2.8' class="popup_window">
+        <pre>
+        ft2.8: Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_user.py", line 36, in setUpClass
+    groData= MyFunction.create_group(group_name)
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA_01\Common\MyFunction.py", line 102, in create_group
+    roleData = create_role(role_num)
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA_01\Common\MyFunction.py", line 77, in create_role
+    priData = create_privilege(num_pri)
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA_01\Common\MyFunction.py", line 66, in create_privilege
+    priId = dict["data"]["records"][0]["id"]
+TypeError: 'NoneType' object is not subscriptable
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='errorClass'>
+        <td>test_camera.TestCamera</td>
+        <td>6</td>
+        <td>0</td>
+        <td>0</td>
+        <td>6</td>
+        <td><a href="javascript:showClassDetail('c3',6)">详情</a></td>
+        <td>&nbsp;</td>
+    </tr>
+
+<tr id='ft3.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_01_add</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.1')" >
+        错误</a>
+
+    <div id='div_ft3.1' class="popup_window">
+        <pre>
+        ft3.1: Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "D:\python3.6\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "D:\python3.6\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "D:\python3.6\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "D:\python3.6\lib\http\client.py", line 964, in send
+    self.connect()
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x00000205B3FBB908&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "D:\python3.6\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='192.168.1.115', port=8088): Max retries exceeded with url: /camera/add (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000205B3FBB908&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_camera.py", line 44, in test_01_add
+    res= self.result.post(uri_add,body)
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA_01\Common\Post_Get.py", line 16, in post
+    res = ses.post(url,json=body,verify=False)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 581, in post
+    return self.request('POST', url, data=data, json=json, **kwargs)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "D:\python3.6\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.1.115', port=8088): Max retries exceeded with url: /camera/add (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000205B3FBB908&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。',))
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft3.2' class='none'>
+    <td class='errorCase'><div class='testcase'>test_02_control</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.2')" >
+        错误</a>
+
+    <div id='div_ft3.2' class="popup_window">
+        <pre>
+        ft3.2: Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_camera.py", line 54, in test_02_control
+    uri = "/camera/control?cameraType=1&amp;id={0}&amp;isvalid=2".format(global_vars["id"])
+KeyError: 'id'
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft3.3' class='none'>
+    <td class='errorCase'><div class='testcase'>test_03_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.3')" >
+        错误</a>
+
+    <div id='div_ft3.3' class="popup_window">
+        <pre>
+        ft3.3: Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "D:\python3.6\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "D:\python3.6\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "D:\python3.6\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "D:\python3.6\lib\http\client.py", line 964, in send
+    self.connect()
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x00000205B404A2B0&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "D:\python3.6\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='192.168.1.115', port=8088): Max retries exceeded with url: /camera/get (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000205B404A2B0&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_camera.py", line 63, in test_03_get
+    res = self.result.get(uri)
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA_01\Common\Post_Get.py", line 23, in get
+    res = ses.get(url,verify=False)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 546, in get
+    return self.request('GET', url, **kwargs)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "D:\python3.6\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.1.115', port=8088): Max retries exceeded with url: /camera/get (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000205B404A2B0&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。',))
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft3.4' class='none'>
+    <td class='errorCase'><div class='testcase'>test_04_getCameraSnapshot</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.4')" >
+        错误</a>
+
+    <div id='div_ft3.4' class="popup_window">
+        <pre>
+        ft3.4: Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_camera.py", line 69, in test_04_getCameraSnapshot
+    uri = "/camera/getCameraSnapshot?cameraUrl={0}".format(global_vars["uri"])
+KeyError: 'uri'
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft3.5' class='none'>
+    <td class='errorCase'><div class='testcase'>test_05_getCameraTreeByCameraName</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.5')" >
+        错误</a>
+
+    <div id='div_ft3.5' class="popup_window">
+        <pre>
+        ft3.5: Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "D:\python3.6\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "D:\python3.6\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "D:\python3.6\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "D:\python3.6\lib\http\client.py", line 964, in send
+    self.connect()
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x00000205B4056198&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "D:\python3.6\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='192.168.1.115', port=8088): Max retries exceeded with url: /camera/getCameraTree?cameraType=1 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000205B4056198&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_camera.py", line 79, in test_05_getCameraTreeByCameraName
+    res = self.result.get(uri)
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA_01\Common\Post_Get.py", line 23, in get
+    res = ses.get(url,verify=False)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 546, in get
+    return self.request('GET', url, **kwargs)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "D:\python3.6\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.1.115', port=8088): Max retries exceeded with url: /camera/getCameraTree?cameraType=1 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000205B4056198&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。',))
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft3.6' class='none'>
+    <td class='errorCase'><div class='testcase'>test_06_update</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.6')" >
+        错误</a>
+
+    <div id='div_ft3.6' class="popup_window">
+        <pre>
+        ft3.6: Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_camera.py", line 86, in test_06_update
+    body = {"id":global_vars["id"],"cameraType":"1","name":global_vars["name"],"status":"",
+KeyError: 'id'
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='errorClass'>
+        <td>test_facegroup.TestFaceGroup</td>
+        <td>5</td>
+        <td>0</td>
+        <td>0</td>
+        <td>5</td>
+        <td><a href="javascript:showClassDetail('c4',5)">详情</a></td>
+        <td>&nbsp;</td>
+    </tr>
+
+<tr id='ft4.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_01_add</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft4.1')" >
+        错误</a>
+
+    <div id='div_ft4.1' class="popup_window">
+        <pre>
+        ft4.1: Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "D:\python3.6\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "D:\python3.6\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "D:\python3.6\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "D:\python3.6\lib\http\client.py", line 964, in send
+    self.connect()
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x00000205B404A240&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "D:\python3.6\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='192.168.1.115', port=8088): Max retries exceeded with url: /faceGroup/add (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000205B404A240&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_facegroup.py", line 34, in test_01_add
+    res = self.result.post(uri_add,body_add)
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA_01\Common\Post_Get.py", line 16, in post
+    res = ses.post(url,json=body,verify=False)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 581, in post
+    return self.request('POST', url, data=data, json=json, **kwargs)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "D:\python3.6\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.1.115', port=8088): Max retries exceeded with url: /faceGroup/add (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000205B404A240&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。',))
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft4.2' class='none'>
+    <td class='errorCase'><div class='testcase'>test_02_update</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft4.2')" >
+        错误</a>
+
+    <div id='div_ft4.2' class="popup_window">
+        <pre>
+        ft4.2: Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_facegroup.py", line 49, in test_02_update
+    uri = '/faceGroup/update?extInfo=&amp;id={}&amp;name={}'.format(global_vars["key_id"],global_vars["key_name"])
+KeyError: 'key_id'
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft4.3' class='none'>
+    <td class='errorCase'><div class='testcase'>test_03_getFaceNumber</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft4.3')" >
+        错误</a>
+
+    <div id='div_ft4.3' class="popup_window">
+        <pre>
+        ft4.3: Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_facegroup.py", line 57, in test_03_getFaceNumber
+    uri = "/faceGroup/getFaceNumber?id={0}".format(global_vars["key_id"])
+KeyError: 'key_id'
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft4.4' class='none'>
+    <td class='errorCase'><div class='testcase'>test_04_get</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft4.4')" >
+        错误</a>
+
+    <div id='div_ft4.4' class="popup_window">
+        <pre>
+        ft4.4: Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "D:\python3.6\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "D:\python3.6\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "D:\python3.6\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "D:\python3.6\lib\http\client.py", line 964, in send
+    self.connect()
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x00000205B3FA09B0&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "D:\python3.6\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='192.168.1.115', port=8088): Max retries exceeded with url: /faceGroup/get (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000205B3FA09B0&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_facegroup.py", line 67, in test_04_get
+    res = self.result.get(uri)
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA_01\Common\Post_Get.py", line 23, in get
+    res = ses.get(url,verify=False)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 546, in get
+    return self.request('GET', url, **kwargs)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "D:\python3.6\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.1.115', port=8088): Max retries exceeded with url: /faceGroup/get (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000205B3FA09B0&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。',))
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft4.5' class='none'>
+    <td class='errorCase'><div class='testcase'>test_05_del</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft4.5')" >
+        错误</a>
+
+    <div id='div_ft4.5' class="popup_window">
+        <pre>
+        ft4.5: Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_facegroup.py", line 76, in test_05_del
+    res1 = requests.post(uri_del,global_vars["key_id"])
+KeyError: 'key_id'
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='errorClass'>
+        <td>test_login.TestFace</td>
+        <td>3</td>
+        <td>0</td>
+        <td>1</td>
+        <td>2</td>
+        <td><a href="javascript:showClassDetail('c5',3)">详情</a></td>
+        <td>&nbsp;</td>
+    </tr>
+
+<tr id='ft5.1' class='none'>
+    <td class='failCase'><div class='testcase'>test_01_login</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft5.1')" >
+        失败</a>
+
+    <div id='div_ft5.1' class="popup_window">
+        <pre>
+        ft5.1: Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_login.py", line 29, in test_01_login
+    self.assertEqual(code,0)
+AssertionError: -1 != 0
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft5.2' class='none'>
+    <td class='errorCase'><div class='testcase'>test_02_sessionTimeOut</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft5.2')" >
+        错误</a>
+
+    <div id='div_ft5.2' class="popup_window">
+        <pre>
+        ft5.2: Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_login.py", line 34, in test_02_sessionTimeOut
+    headers = {"cookie" : "JSESSIONID={0}".format(global_vars["cookiesData"]["JSESSIONID"])}
+KeyError: 'cookiesData'
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft5.3' class='none'>
+    <td class='errorCase'><div class='testcase'>test_03_logout</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft5.3')" >
+        错误</a>
+
+    <div id='div_ft5.3' class="popup_window">
+        <pre>
+        ft5.3: Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "D:\python3.6\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "D:\python3.6\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "D:\python3.6\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "D:\python3.6\lib\http\client.py", line 964, in send
+    self.connect()
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x00000205B4063860&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "D:\python3.6\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='192.168.1.115', port=8088): Max retries exceeded with url: /logout (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000205B4063860&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_login.py", line 43, in test_03_logout
+    res = self.result.get(uri)
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA_01\Common\Post_Get.py", line 23, in get
+    res = ses.get(url,verify=False)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 546, in get
+    return self.request('GET', url, **kwargs)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "D:\python3.6\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.1.115', port=8088): Max retries exceeded with url: /logout (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000205B4063860&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。',))
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='errorClass'>
+        <td>test_organization.TestOrganization</td>
+        <td>4</td>
+        <td>0</td>
+        <td>0</td>
+        <td>4</td>
+        <td><a href="javascript:showClassDetail('c6',4)">详情</a></td>
+        <td>&nbsp;</td>
+    </tr>
+
+<tr id='ft6.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_01_add</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft6.1')" >
+        错误</a>
+
+    <div id='div_ft6.1' class="popup_window">
+        <pre>
+        ft6.1: Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "D:\python3.6\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "D:\python3.6\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "D:\python3.6\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "D:\python3.6\lib\http\client.py", line 964, in send
+    self.connect()
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x00000205B4063470&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "D:\python3.6\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='192.168.1.115', port=8088): Max retries exceeded with url: /sysManage/organization/add (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000205B4063470&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_organization.py", line 37, in test_01_add
+    res = self.result.post(uri_add,body_add)
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA_01\Common\Post_Get.py", line 16, in post
+    res = ses.post(url,json=body,verify=False)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 581, in post
+    return self.request('POST', url, data=data, json=json, **kwargs)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "D:\python3.6\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.1.115', port=8088): Max retries exceeded with url: /sysManage/organization/add (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000205B4063470&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。',))
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft6.2' class='none'>
+    <td class='errorCase'><div class='testcase'>test_02_edit</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft6.2')" >
+        错误</a>
+
+    <div id='div_ft6.2' class="popup_window">
+        <pre>
+        ft6.2: Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_organization.py", line 55, in test_02_edit
+    body_edit = {"name":global_vars["key_num"],
+KeyError: 'key_num'
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft6.3' class='none'>
+    <td class='errorCase'><div class='testcase'>test_03_qry</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft6.3')" >
+        错误</a>
+
+    <div id='div_ft6.3' class="popup_window">
+        <pre>
+        ft6.3: Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_organization.py", line 71, in test_03_qry
+    uri_menu = "/sysManage/organization/qry?id={0}&amp;pageNo=1&amp;pageSize=10".format(global_vars["key_id"])
+KeyError: 'key_id'
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft6.4' class='none'>
+    <td class='errorCase'><div class='testcase'>test_04_del</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft6.4')" >
+        错误</a>
+
+    <div id='div_ft6.4' class="popup_window">
+        <pre>
+        ft6.4: Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_organization.py", line 82, in test_04_del
+    body_del = {"ids": global_vars["key_id"],
+KeyError: 'key_id'
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    <tr class='errorClass'>
+        <td>test_privilege.TestPrivilege</td>
+        <td>7</td>
+        <td>0</td>
+        <td>0</td>
+        <td>7</td>
+        <td><a href="javascript:showClassDetail('c7',7)">详情</a></td>
+        <td>&nbsp;</td>
+    </tr>
+
+<tr id='ft7.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_01_add</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft7.1')" >
+        错误</a>
+
+    <div id='div_ft7.1' class="popup_window">
+        <pre>
+        ft7.1: Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "D:\python3.6\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "D:\python3.6\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "D:\python3.6\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "D:\python3.6\lib\http\client.py", line 964, in send
+    self.connect()
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x00000205B3FDD5C0&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "D:\python3.6\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='192.168.1.115', port=8088): Max retries exceeded with url: /sysManage/privilege/add (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000205B3FDD5C0&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_privilege.py", line 35, in test_01_add
+    res1 = self.result.post(uri_add,body_add)
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA_01\Common\Post_Get.py", line 16, in post
+    res = ses.post(url,json=body,verify=False)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 581, in post
+    return self.request('POST', url, data=data, json=json, **kwargs)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "D:\python3.6\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.1.115', port=8088): Max retries exceeded with url: /sysManage/privilege/add (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000205B3FDD5C0&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。',))
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft7.2' class='none'>
+    <td class='errorCase'><div class='testcase'>test_02_edit</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft7.2')" >
+        错误</a>
+
+    <div id='div_ft7.2' class="popup_window">
+        <pre>
+        ft7.2: Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_privilege.py", line 55, in test_02_edit
+    body_edit = {"createPerson": global_vars["key_creatPerson"],
+KeyError: 'key_creatPerson'
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft7.3' class='none'>
+    <td class='errorCase'><div class='testcase'>test_03_menu</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft7.3')" >
+        错误</a>
+
+    <div id='div_ft7.3' class="popup_window">
+        <pre>
+        ft7.3: Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "D:\python3.6\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "D:\python3.6\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "D:\python3.6\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "D:\python3.6\lib\http\client.py", line 964, in send
+    self.connect()
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x00000205B404A860&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "D:\python3.6\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='192.168.1.115', port=8088): Max retries exceeded with url: /sysManage/privilege/menu (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000205B404A860&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_privilege.py", line 70, in test_03_menu
+    res = self.result.get(uri_menu)
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA_01\Common\Post_Get.py", line 23, in get
+    res = ses.get(url,verify=False)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 546, in get
+    return self.request('GET', url, **kwargs)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "D:\python3.6\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.1.115', port=8088): Max retries exceeded with url: /sysManage/privilege/menu (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000205B404A860&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。',))
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft7.4' class='none'>
+    <td class='errorCase'><div class='testcase'>test_04_pri</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft7.4')" >
+        错误</a>
+
+    <div id='div_ft7.4' class="popup_window">
+        <pre>
+        ft7.4: Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_privilege.py", line 80, in test_04_pri
+    "priId": global_vars["key_id"]}
+KeyError: 'key_id'
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft7.5' class='none'>
+    <td class='errorCase'><div class='testcase'>test_05_getpri</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft7.5')" >
+        错误</a>
+
+    <div id='div_ft7.5' class="popup_window">
+        <pre>
+        ft7.5: Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_privilege.py", line 89, in test_05_getpri
+    uri_getpri = "/sysManage/privilege/getpri?id={0}".format(global_vars["key_id"])
+KeyError: 'key_id'
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft7.6' class='none'>
+    <td class='errorCase'><div class='testcase'>test_06_del</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft7.6')" >
+        错误</a>
+
+    <div id='div_ft7.6' class="popup_window">
+        <pre>
+        ft7.6: Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_privilege.py", line 98, in test_06_del
+    body_del = {"ids": global_vars["key_id"],
+KeyError: 'key_id'
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft7.7' class='none'>
+    <td class='errorCase'><div class='testcase'>test_07_qry</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft7.7')" >
+        错误</a>
+
+    <div id='div_ft7.7' class="popup_window">
+        <pre>
+        ft7.7: Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "D:\python3.6\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "D:\python3.6\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "D:\python3.6\lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "D:\python3.6\lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "D:\python3.6\lib\http\client.py", line 964, in send
+    self.connect()
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "D:\python3.6\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x00000205B3FDD1D0&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python3.6\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "D:\python3.6\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "D:\python3.6\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='192.168.1.115', port=8088): Max retries exceeded with url: /sysManage/privilege/qry (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000205B3FDD1D0&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_privilege.py", line 107, in test_07_qry
+    res1 = self.result.get(uri_qry)
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA_01\Common\Post_Get.py", line 23, in get
+    res = ses.get(url,verify=False)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 546, in get
+    return self.request('GET', url, **kwargs)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "D:\python3.6\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "D:\python3.6\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.1.115', port=8088): Max retries exceeded with url: /sysManage/privilege/qry (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000205B3FDD1D0&gt;: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。',))
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+        <tr id='total_row'>
+            <td>总计</td>
+            <td>34</td>
+            <td>0</td>
+            <td>1</td>
+            <td>33</td>
+            <td>&nbsp;</td>
+            <th>&nbsp;</th>
+        </tr>
+    </table>
+
+        <div id='ending'>&nbsp;</div>
+        
+        <script type="text/javascript">
+        var myChartline = echarts.init(document.getElementById('chartline'));
+        var optionline = {
+                tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    crossStyle: {
+                        color: '#999'
+                    }
+                }
+            },
+            toolbox: {
+                feature: {
+                    dataView: {show: true, readOnly: false},
+                    magicType: {show: true, type: ['line', 'bar']},
+                    restore: {show: true},
+                    saveAsImage: {show: true}
+                }
+            },
+            color: ['#6c6', '#c00', '#FF6600'],
+            legend: {
+                data:['错误','成功','失败']
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: [' 第一次','第二次','第三次','第四次','第五次','第六次','第七次','第八次','第九次','第十次'],
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    name: '百分比',
+                    min: 0,
+                    max: 100,
+                    interval: 20,
+                    axisLabel: {
+                        formatter: '{value} %'
+                    }
+                },
+                {
+                    type: 'value',
+                    name: '成功率',
+                    min: 0,
+                    max: 10,
+                    interval: 2,
+                    axisLabel: {
+                        formatter: '{value} %'
+                    }
+                }
+            ],
+            series: [
+                {
+                    name:'成功',
+                    type:'bar',
+                    data:[0]
+                //data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
+                },
+                {
+                    name:'失败',
+                    type:'bar',
+                    data:[1]
+                },
+                {
+                    name:'错误',
+                    type:'line',
+                    yAxisIndex: 1,
+                    data:[33]
+                    //data:[2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+                }
+            ]
+        };
+        myChartline.setOption(optionline);
+        console.log(1,0,33)
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('chart'));
+
+            // 指定图表的配置项和数据
+            var option = {
+                title : {
+                    text: '测试执行情况',
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                color: ['#6c6', '#c00', '#FF6600'],
+                legend: {
+                    orient: 'vertical',
+                    left: 'left',
+                    data: ['成功','失败','错误']
+                },
+                series : [
+                    {
+                        name: '测试执行情况',
+                        type: 'pie',
+                        radius : '60%',
+                        center: ['50%', '60%'],
+                        data:[
+                            {value:0, name:'成功'},
+                            {value:1, name:'失败'},
+                            {value:33, name:'错误'}
+                        ],
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        </script>
+    
+
+    </div>
+</body>
+</html>

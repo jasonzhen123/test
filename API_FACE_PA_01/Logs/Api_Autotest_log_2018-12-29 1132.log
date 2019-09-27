@@ -1,0 +1,11 @@
+ Sat, 29 Dec 2018 11:32:15  ERROR DoExcel.py save_excelFile [ line:67 ] [Errno 13] Permission denied: 'G:\\01WorkSpace(Pycharm)\\API_FACE_PA\\TestDatas/api_info_1.xlsx'
+Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\Common\DoExcel.py", line 65, in save_excelFile
+    self.wb.save(excelPath)
+  File "D:\python3.6\lib\site-packages\openpyxl\workbook\workbook.py", line 391, in save
+    save_workbook(self, filename)
+  File "D:\python3.6\lib\site-packages\openpyxl\writer\excel.py", line 282, in save_workbook
+    archive = ZipFile(filename, 'w', ZIP_DEFLATED, allowZip64=True)
+  File "D:\python3.6\lib\zipfile.py", line 1082, in __init__
+    self.fp = io.open(file, filemode)
+PermissionError: [Errno 13] Permission denied: 'G:\\01WorkSpace(Pycharm)\\API_FACE_PA\\TestDatas/api_info_1.xlsx'

@@ -1,0 +1,178 @@
+ Thu, 24 Jan 2019 13:42:23  ERROR DoExcel.py save_excelFile [ line:67 ] [Errno 13] Permission denied: 'G:\\01WorkSpace(Pycharm)\\API_FACE_PA\\TestDatas/api_info_1.xlsx'
+Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\Common\DoExcel.py", line 65, in save_excelFile
+    self.wb.save(excelPath)
+  File "D:\python3.6\lib\site-packages\openpyxl\workbook\workbook.py", line 391, in save
+    save_workbook(self, filename)
+  File "D:\python3.6\lib\site-packages\openpyxl\writer\excel.py", line 282, in save_workbook
+    archive = ZipFile(filename, 'w', ZIP_DEFLATED, allowZip64=True)
+  File "D:\python3.6\lib\zipfile.py", line 1082, in __init__
+    self.fp = io.open(file, filemode)
+PermissionError: [Errno 13] Permission denied: 'G:\\01WorkSpace(Pycharm)\\API_FACE_PA\\TestDatas/api_info_1.xlsx'
+ Thu, 24 Jan 2019 13:42:23  ERROR test_api.py test_api [ line:69 ] 结果比对失败：
+Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_api.py", line 66, in test_api
+    self.assertEqual(res.text,case_data["expected_data"])
+  File "D:\python3.6\lib\unittest\case.py", line 821, in assertEqual
+    assertion_func(first, second, msg=msg)
+  File "D:\python3.6\lib\unittest\case.py", line 1194, in assertMultiLineEqual
+    self.fail(self._formatMessage(msg, standardMsg))
+  File "D:\python3.6\lib\unittest\case.py", line 666, in fail
+    raise self.failureException(msg)
+AssertionError: '{"co[27 chars]"userName":"admin","isFirst":"1","needCwd":fal[103 chars]1"}}' != '{"co[27 chars]"userId":1,"username":"admin","password":"e10a[327 chars]00}}'
+- {"code":0,"msg":"操作成功","data":{"userName":"admin","isFirst":"1","needCwd":false,"active":"90","lastLoginTime":"2019-01-24 13:38:19","loginFailTimes":"0","loginFirst":"1","userId":"1"}}
++ {"code":0,"msg":"操作成功","data":{"userId":1,"username":"admin","password":"e10adc3949ba59abbe56e057f20f883e","realName":"系统管理员","tel":"134","email":null,"remark":null,"deptId":"null","groupId":"1542251455310","roleId":"1542104202561","isvalid":"1","isDeptAdmin":"1","themes":null,"createUserId":null,"createUserName":null,"cameraPri":"59d1815bd3ec4010be77a971065f44de","humanDb":"","createTime":1543973016000}}
+
+ Thu, 24 Jan 2019 13:42:23  ERROR test_api.py test_api [ line:69 ] 结果比对失败：
+Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_api.py", line 66, in test_api
+    self.assertEqual(res.text,case_data["expected_data"])
+  File "D:\python3.6\lib\unittest\case.py", line 821, in assertEqual
+    assertion_func(first, second, msg=msg)
+  File "D:\python3.6\lib\unittest\case.py", line 1194, in assertMultiLineEqual
+    self.fail(self._formatMessage(msg, standardMsg))
+  File "D:\python3.6\lib\unittest\case.py", line 666, in fail
+    raise self.failureException(msg)
+AssertionError: '{"code":-1,"msg":"用户名或密码不正确","data":""}' != '{"code":-1,"msg":"用户名或者密码不对","data":""}'
+- {"code":-1,"msg":"用户名或密码不正确","data":""}
+?                          ^^
++ {"code":-1,"msg":"用户名或者密码不对","data":""}
+?                       +   ^
+
+ Thu, 24 Jan 2019 13:42:23  ERROR test_api.py test_api [ line:69 ] 结果比对失败：
+Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_api.py", line 66, in test_api
+    self.assertEqual(res.text,case_data["expected_data"])
+  File "D:\python3.6\lib\unittest\case.py", line 821, in assertEqual
+    assertion_func(first, second, msg=msg)
+  File "D:\python3.6\lib\unittest\case.py", line 1194, in assertMultiLineEqual
+    self.fail(self._formatMessage(msg, standardMsg))
+  File "D:\python3.6\lib\unittest\case.py", line 666, in fail
+    raise self.failureException(msg)
+AssertionError: '{"code":-1,"msg":"用户名或密码不正确","data":""}' != '{"code":-1,"msg":"用户名或者密码不对","data":""}'
+- {"code":-1,"msg":"用户名或密码不正确","data":""}
+?                          ^^
++ {"code":-1,"msg":"用户名或者密码不对","data":""}
+?                       +   ^
+
+ Thu, 24 Jan 2019 13:42:23  ERROR test_api.py test_api [ line:69 ] 结果比对失败：
+Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_api.py", line 66, in test_api
+    self.assertEqual(res.text,case_data["expected_data"])
+  File "D:\python3.6\lib\unittest\case.py", line 821, in assertEqual
+    assertion_func(first, second, msg=msg)
+  File "D:\python3.6\lib\unittest\case.py", line 1194, in assertMultiLineEqual
+    self.fail(self._formatMessage(msg, standardMsg))
+  File "D:\python3.6\lib\unittest\case.py", line 666, in fail
+    raise self.failureException(msg)
+AssertionError: '{"code":-1,"msg":"用户名或密码不正确","data":""}' != '{"code":-1,"msg":"用户名或者密码不对","data":""}'
+- {"code":-1,"msg":"用户名或密码不正确","data":""}
+?                          ^^
++ {"code":-1,"msg":"用户名或者密码不对","data":""}
+?                       +   ^
+
+ Thu, 24 Jan 2019 13:42:23  ERROR test_api.py test_api [ line:69 ] 结果比对失败：
+Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_api.py", line 66, in test_api
+    self.assertEqual(res.text,case_data["expected_data"])
+  File "D:\python3.6\lib\unittest\case.py", line 821, in assertEqual
+    assertion_func(first, second, msg=msg)
+  File "D:\python3.6\lib\unittest\case.py", line 1194, in assertMultiLineEqual
+    self.fail(self._formatMessage(msg, standardMsg))
+  File "D:\python3.6\lib\unittest\case.py", line 666, in fail
+    raise self.failureException(msg)
+AssertionError: '{"code":-1,"msg":"用户名或密码不正确","data":""}' != '{"code":-1,"msg":"用户名或者密码不对","data":""}'
+- {"code":-1,"msg":"用户名或密码不正确","data":""}
+?                          ^^
++ {"code":-1,"msg":"用户名或者密码不对","data":""}
+?                       +   ^
+
+ Thu, 24 Jan 2019 13:42:37  ERROR DoExcel.py save_excelFile [ line:67 ] [Errno 13] Permission denied: 'G:\\01WorkSpace(Pycharm)\\API_FACE_PA\\TestDatas/api_info_1.xlsx'
+Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\Common\DoExcel.py", line 65, in save_excelFile
+    self.wb.save(excelPath)
+  File "D:\python3.6\lib\site-packages\openpyxl\workbook\workbook.py", line 391, in save
+    save_workbook(self, filename)
+  File "D:\python3.6\lib\site-packages\openpyxl\writer\excel.py", line 282, in save_workbook
+    archive = ZipFile(filename, 'w', ZIP_DEFLATED, allowZip64=True)
+  File "D:\python3.6\lib\zipfile.py", line 1082, in __init__
+    self.fp = io.open(file, filemode)
+PermissionError: [Errno 13] Permission denied: 'G:\\01WorkSpace(Pycharm)\\API_FACE_PA\\TestDatas/api_info_1.xlsx'
+ Thu, 24 Jan 2019 13:42:37  ERROR test_api.py test_api [ line:69 ] 结果比对失败：
+Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_api.py", line 66, in test_api
+    self.assertEqual(res.text,case_data["expected_data"])
+  File "D:\python3.6\lib\unittest\case.py", line 821, in assertEqual
+    assertion_func(first, second, msg=msg)
+  File "D:\python3.6\lib\unittest\case.py", line 1194, in assertMultiLineEqual
+    self.fail(self._formatMessage(msg, standardMsg))
+  File "D:\python3.6\lib\unittest\case.py", line 666, in fail
+    raise self.failureException(msg)
+AssertionError: '{"co[27 chars]"userName":"admin","isFirst":"1","needCwd":fal[103 chars]1"}}' != '{"co[27 chars]"userId":1,"username":"admin","password":"e10a[327 chars]00}}'
+- {"code":0,"msg":"操作成功","data":{"userName":"admin","isFirst":"1","needCwd":false,"active":"90","lastLoginTime":"2019-01-24 13:43:13","loginFailTimes":"0","loginFirst":"1","userId":"1"}}
++ {"code":0,"msg":"操作成功","data":{"userId":1,"username":"admin","password":"e10adc3949ba59abbe56e057f20f883e","realName":"系统管理员","tel":"134","email":null,"remark":null,"deptId":"null","groupId":"1542251455310","roleId":"1542104202561","isvalid":"1","isDeptAdmin":"1","themes":null,"createUserId":null,"createUserName":null,"cameraPri":"59d1815bd3ec4010be77a971065f44de","humanDb":"","createTime":1543973016000}}
+
+ Thu, 24 Jan 2019 13:42:37  ERROR test_api.py test_api [ line:69 ] 结果比对失败：
+Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_api.py", line 66, in test_api
+    self.assertEqual(res.text,case_data["expected_data"])
+  File "D:\python3.6\lib\unittest\case.py", line 821, in assertEqual
+    assertion_func(first, second, msg=msg)
+  File "D:\python3.6\lib\unittest\case.py", line 1194, in assertMultiLineEqual
+    self.fail(self._formatMessage(msg, standardMsg))
+  File "D:\python3.6\lib\unittest\case.py", line 666, in fail
+    raise self.failureException(msg)
+AssertionError: '{"code":-1,"msg":"用户名或密码不正确","data":""}' != '{"code":-1,"msg":"用户名或者密码不对","data":""}'
+- {"code":-1,"msg":"用户名或密码不正确","data":""}
+?                          ^^
++ {"code":-1,"msg":"用户名或者密码不对","data":""}
+?                       +   ^
+
+ Thu, 24 Jan 2019 13:42:37  ERROR test_api.py test_api [ line:69 ] 结果比对失败：
+Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_api.py", line 66, in test_api
+    self.assertEqual(res.text,case_data["expected_data"])
+  File "D:\python3.6\lib\unittest\case.py", line 821, in assertEqual
+    assertion_func(first, second, msg=msg)
+  File "D:\python3.6\lib\unittest\case.py", line 1194, in assertMultiLineEqual
+    self.fail(self._formatMessage(msg, standardMsg))
+  File "D:\python3.6\lib\unittest\case.py", line 666, in fail
+    raise self.failureException(msg)
+AssertionError: '{"code":-1,"msg":"用户名或密码不正确","data":""}' != '{"code":-1,"msg":"用户名或者密码不对","data":""}'
+- {"code":-1,"msg":"用户名或密码不正确","data":""}
+?                          ^^
++ {"code":-1,"msg":"用户名或者密码不对","data":""}
+?                       +   ^
+
+ Thu, 24 Jan 2019 13:42:37  ERROR test_api.py test_api [ line:69 ] 结果比对失败：
+Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_api.py", line 66, in test_api
+    self.assertEqual(res.text,case_data["expected_data"])
+  File "D:\python3.6\lib\unittest\case.py", line 821, in assertEqual
+    assertion_func(first, second, msg=msg)
+  File "D:\python3.6\lib\unittest\case.py", line 1194, in assertMultiLineEqual
+    self.fail(self._formatMessage(msg, standardMsg))
+  File "D:\python3.6\lib\unittest\case.py", line 666, in fail
+    raise self.failureException(msg)
+AssertionError: '{"code":-1,"msg":"用户名或密码不正确","data":""}' != '{"code":-1,"msg":"用户名或者密码不对","data":""}'
+- {"code":-1,"msg":"用户名或密码不正确","data":""}
+?                          ^^
++ {"code":-1,"msg":"用户名或者密码不对","data":""}
+?                       +   ^
+
+ Thu, 24 Jan 2019 13:42:37  ERROR test_api.py test_api [ line:69 ] 结果比对失败：
+Traceback (most recent call last):
+  File "G:\01WorkSpace(Pycharm)\API_FACE_PA\TestCases\test_api.py", line 66, in test_api
+    self.assertEqual(res.text,case_data["expected_data"])
+  File "D:\python3.6\lib\unittest\case.py", line 821, in assertEqual
+    assertion_func(first, second, msg=msg)
+  File "D:\python3.6\lib\unittest\case.py", line 1194, in assertMultiLineEqual
+    self.fail(self._formatMessage(msg, standardMsg))
+  File "D:\python3.6\lib\unittest\case.py", line 666, in fail
+    raise self.failureException(msg)
+AssertionError: '{"code":-1,"msg":"用户名或密码不正确","data":""}' != '{"code":-1,"msg":"用户名或者密码不对","data":""}'
+- {"code":-1,"msg":"用户名或密码不正确","data":""}
+?                          ^^
++ {"code":-1,"msg":"用户名或者密码不对","data":""}
+?                       +   ^
+
